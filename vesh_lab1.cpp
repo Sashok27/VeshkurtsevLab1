@@ -9,14 +9,18 @@ struct Pipe {
     bool repair;
 };
 
-void bebra(){
-    cout << "!1";
-}
+struct CS {
+    string name;
+    int work_p;
+    int work_p_on;
+    string class_cs;
+};
+
 int main(){
     cout <<"Hello !" << endl;
     Pipe truba;
     truba.name = "Zona 1";
-    cin >> truba.name;
-    bebra();
+    cout << truba.name;
+    
 
 }
