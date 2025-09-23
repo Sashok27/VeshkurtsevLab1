@@ -24,26 +24,52 @@ void Menu(Pipe& t, CS& cs){
         cin >> option;
         switch (option)
         {
+        
         case 1:
-            cout << "Ukazhite pipe name: ";
-            cin >> t.name;
-            cout << "Ukazhite length: ";
-            cin >> t.length;
-            cout << "Ukazhite diametr: ";
-            cin >> t.diametr;
-            t.repair = false;
-            break;
+        cout << "Ukazhite pipe name: ";
+        cin.ignore();
+        getline(cin, t.name);
+    
+        cout << "Ukazhite length: ";
+        while (!(cin >> t.length) || t.length <= 0) {
+            cout << "Oshibka! Vvedite chislo: ";
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+    
+        cout << "Ukazhite diametr: ";
+        while (!(cin >> t.diametr) || t.diametr <= 0) {
+            cout << "Oshibka! Vvedite chislo: ";
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+    
+        t.repair = false;
+        break;
 
         case 2:
-            cout << "Ukazhite cs name: ";
-            cin >> cs.name;
-            cout << "Ukazhite vsego stations: ";
-            cin >> cs.work_p;
-            cout << "Ukazhite rabotayushchie stations: ";
-            cin >> cs.work_p_on;
-            cout << "Ukazhite class: ";
-            cin >> cs.class_cs;
-            break;
+        cout << "Ukazhite cs name: ";
+        cin.ignore();
+        getline(cin, cs.name);
+        
+        cout << "Ukazhite vsego stations: ";
+        while (!(cin >> cs.work_p) || cs.work_p <= 0) {
+            cout << "Oshibka! Vvedite chislo: ";
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+        
+        cout << "Ukazhite rabotayushchie stations: ";
+        while (!(cin >> cs.work_p_on) || cs.work_p_on < 0 || cs.work_p_on > cs.work_p) {
+            cout << "Oshibka! Vvedite chislo ot 0 do " << cs.work_p << ": ";
+            cin.clear();
+            cin.ignore(10000, '\n');
+        }
+        
+        cout << "Ukazhite class: ";
+        cin.ignore();
+        getline(cin, cs.class_cs);
+        break;
 
         case 3:
             if (!t.name.empty()) {
@@ -107,7 +133,7 @@ void Menu(Pipe& t, CS& cs){
             }
             break;
             
-        case 6:
+        case 6: //
             {
                 ofstream file("data.txt");
 
