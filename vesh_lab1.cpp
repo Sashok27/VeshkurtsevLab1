@@ -140,7 +140,7 @@ void Menu(Pipe& t, CS& cs){
                 cout << "KS ne sozdana" << endl;
             }
             break;
-            
+            //
         case 6: //
             {
                 ofstream file("data.txt");
