@@ -141,19 +141,24 @@ void Menu(Pipe& t, CS& cs){
             }
             break;
             //
-        case 6: //
+        case 6:
             {
                 ofstream file("data.txt");
-
+                
+               
+                file << "PIPE" << endl;
                 file << t.name << endl;
                 file << t.length << endl;
                 file << t.diametr << endl;
                 file << t.repair << endl;
-
+                
+                
+                file << "CS" << endl;
                 file << cs.name << endl;
                 file << cs.work_p << endl;
                 file << cs.work_p_on << endl;
                 file << cs.class_cs << endl;
+                
                 file.close();
                 cout << "Dannie sohraneni v fail data.txt" << endl;
             }
@@ -163,17 +168,28 @@ void Menu(Pipe& t, CS& cs){
             {
                 ifstream file("data.txt");
                 if (file) {
-                    file >> t.name;
-                    file >> t.length;
-                    file >> t.diametr;
-                     
-                    file >> t.repair;
-                    file >> cs.name;
-                    file >> cs.work_p;
-                    file >> cs.work_p_on;
-                    file >> cs.class_cs;
-                    file.close();
+                    string marker;
                     
+                    
+                    file >> marker;
+                    if (marker == "PIPE") {
+                        file.ignore(); // пропускаем перевод строки
+                        getline(file, t.name);
+                        file >> t.length >> t.diametr >> t.repair;
+                    }
+                    
+                    
+                    file >> marker;
+                    if (marker == "CS") {
+                        file.ignore(); 
+                        getline(file, cs.name);
+                        file >> cs.work_p >> cs.work_p_on;
+                        file.ignore(); 
+                        getline(file, cs.class_cs);
+                    }
+                    
+                    file.close();
+                    cout << "Dannie zagruzheni" << endl;
                 } else {
                     cout << "Oshibka" << endl;
                 }
