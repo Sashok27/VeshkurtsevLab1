@@ -98,10 +98,14 @@ void Menu(Pipe& t, CS& cs){
             if (!t.name.empty()) {
                 cout << "Tekushchiy status remonta: " << (t.repair ? "Da" : "Net") << endl;
                 cout << "Izmenit status? (1 - Da, 0 - Net): ";
-
+                
                 int choice;
-                cin >> choice;
-
+                while (!(cin >> choice) || (choice != 0 && choice != 1)) {
+                    cout << "Oshibka! Vvedite 1 or 0: ";
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                }
+                
                 if (choice == 1) {
                     t.repair = !t.repair;
                     cout << "Noviy status: " << (t.repair ? "Da" : "Net") << endl;
@@ -111,14 +115,18 @@ void Menu(Pipe& t, CS& cs){
             }
             break;
 
-            case 5:
+        case 5:
             if (!cs.name.empty()) {
                 cout << "Tekushchee kolichestvo rabotayushchikh stantsiy: " << cs.work_p_on << " iz " << cs.work_p << endl;
                 cout << "1 - Zapustit stantsiyu\n2 - Ostanovit stantsiyu\nViberite: ";
-
+                
                 int choice;
-                cin >> choice;
-
+                while (!(cin >> choice) || (choice != 1 && choice != 2)) {
+                    cout << "Oshibka! Vvedite 1 or 2: ";
+                    cin.clear();
+                    cin.ignore(10000, '\n');
+                }
+                
                 if (choice == 1 && cs.work_p_on < cs.work_p) {
                     cs.work_p_on++;
                     cout << "Zapushchena odna stantsiya. Teper rabotayet: " << cs.work_p_on << endl;
