@@ -19,6 +19,7 @@ struct CS {
 
 void Menu(Pipe& t, CS& cs){
     while (1){
+        
         cout << "Viberite option:\n1 Add pipe\n2 Add CS\n3 Show all\n4 Edit pipe\n5 Edit cs\n6 Save\n7 Download \n0 Exit\n";
         int option;
         cin >> option;
@@ -26,6 +27,7 @@ void Menu(Pipe& t, CS& cs){
         {
         
         case 1:
+        cin.ignore(10000, '\n');
         cout << "Ukazhite pipe name: ";
         cin.ignore();
         getline(cin, t.name);
